@@ -9,14 +9,19 @@ if (Meteor.isClient) {
   // This code only runs on the client
   Template.body.helpers({
     tasks: function () {
-      return Tasks.find({});
+      return Tasks.find({}, {sort: {createdAt: -1}});
     }
   });
 
   Template.body.events({
+    /*
+     * Listen to submit event on any element that matches the
+     * cs selector '.new-task'. In this case, when a new task
+     * is submitted. The event handler gets anargument called
+     * event that has information about the triggered event.
+    */
     "submit .new-task": function (event) {
-      // This function is called when new taks form is submitted
-
+      console.log(event);
       var text = event.target.text.value;
 
       Tasks.insert({
