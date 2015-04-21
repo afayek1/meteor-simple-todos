@@ -24,7 +24,7 @@ if (Meteor.isClient) {
 
     incompleteCount: function() {
       return Tasks.find({checked: {$ne: true}}).count();
-    }
+    },
   });
 
   Template.body.events({
@@ -67,6 +67,10 @@ if (Meteor.isClient) {
     "click .delete": function() {
       Tasks.remove(this._id);
     }
+  });
+
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
   });
 }
 
