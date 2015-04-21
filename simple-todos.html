@@ -11,20 +11,23 @@
         <input type="checkbox" checked="{{hideCompleted}}" />
         Hide Completed Tasks
       </label>
-
+      
+      <!-- With the accounts-ui package installed, the dropdown detects which login methods have been added and displays the appropriate controles. -->
       {{> loginButtons}}
       
-      <form class="new-task">
-        <input type="text" name="text" placeholder="Type to add new tasks">
-      </form>
-
+      {{#if currentUser}}
+        <form class="new-task">
+          <input type="text" name="text" placeholder="Type to add new tasks">
+        </form>
+      {{/if}}
     </header>
 
     <ul>
       {{#each tasks}}
-      {{> task}}
+        {{> task}}
       {{/each}}
     </ul>
+
   </div>
 </body>
 
@@ -33,7 +36,6 @@
     <button class="delete">&times;</button>
 
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-
-    <span class="text">{{text}}</span>
+    <span class="text"><strong>{{username}}</strong> - {{text}}</span>
   </li>
 </template>
